@@ -25,7 +25,7 @@ name *string
 author *user_id
 Jam *jam_id
 rating *integer
-submitted? boolean
+submitted? *boolean
 
 
 Jams (writing competition)
