@@ -1,6 +1,5 @@
 <h2>Welcome to Write On</h2>
 <p>Please log in or sign up below</p>
-<a href="/signup">Sign Up!</a>
 
 <nav>
   <% if logged_in? %>
@@ -8,6 +7,7 @@
     <a href="/logout">Log Out</a>
     <p>Welcome <%= current_user.username %></p>
   <% else %>
-    <a href="/login">Sign In</a>
+    <a href="/login">Log In</a>
   <% end %>
 </nav>
+<a href="/signup">Sign Up</a>
