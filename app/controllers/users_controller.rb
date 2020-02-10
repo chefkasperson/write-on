@@ -8,6 +8,14 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
+    @user = User.new(params[:user])
+    if @user.save
+      @user.save
+      session[:user_id] = @user.id
+      redirect to '/stories'
+    else
+      @errors = author.errors.full_messages
+      erb :'users/new'
+    end
   end
 end
