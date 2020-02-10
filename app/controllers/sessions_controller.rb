@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     erb :'sessions/new'
   end
 
-  post 'login' do
+  post '/login' do
     user = User.find_by(email: params[:user][:email])
 
     if user && user.authenticate(params[:user][:password])
