@@ -1,0 +1,9 @@
+<form action="/stories/<%= @story.slug %>" method="post">
+  <label for="title">Title: </label>
+  <input type="text" name="story[title]" id="title" value="<%= @story.title %>">
+  <label for="jam_selector">Choose Jam: </label>
+  <h5>bla bla bla</h5>
+  <label for="content">Begin Writing: </label>
+  <input type="text" name="story[content]" id="content" value="<%= @story.content %>">
+  <input type="submit" value="Submit">
+</form>
