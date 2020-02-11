@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     erb :'users/show'
   end
 
-  get 'users/:slug/edit' do
+  get '/users/:slug/edit' do
     @user = User.find_by_slug(params[:slug])
     if @user == current_user
       erb :'users/edit'
@@ -29,4 +29,24 @@ class UsersController < ApplicationController
       redirect to '/'
     end
   end
+
+  patch '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+
+    if @user.update(params[:user])
+      redirect to "/users/#{@user.slug}"
+    else
+      erb :'/users/edit'
+    end
+  end
+
+  delete '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    if @user
+      @user.destroy
+    else
+      redirect to '/users'
+    end
+  end
+  
 end
