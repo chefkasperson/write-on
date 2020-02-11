@@ -1,0 +1,14 @@
+<h3>Edit Your Info</h3>
+<form action="/users/<%= @user.slug %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="Username">Username: </label>
+  <input type="text" name="user[username]" id="username"><br>
+  <label for="password">Password: </label>
+  <input type="text" name="user[password]" id="password"><br>
+  <input type="submit" value="Edit User"><br>
+</form>
+
+<form action="/users/<%= @user.slug %>" method="post">
+  <input type="hidden" name="_method" id="delete">
+  <input type="submit" value="Delete Profile!"> 
+</form>
