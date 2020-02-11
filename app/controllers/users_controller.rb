@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   patch '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-
+    binding.pry
     if @user.update(params[:user])
       redirect to "/users/#{@user.slug}"
     else
@@ -48,5 +48,5 @@ class UsersController < ApplicationController
       redirect to '/users'
     end
   end
-  
+
 end
