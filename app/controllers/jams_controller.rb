@@ -18,7 +18,7 @@ class JamsController < ApplicationController
       if params[:title] == "" || params[:start_date] == "" || params[:end_date] == ""
         redirect to '/jams/new'
       else
-        @jam = Jam.new(params)
+        @jam = Jam.new(params[:jam])
         if @jam.save
           redirect to "/jams/#{@jam.id}"
         else
