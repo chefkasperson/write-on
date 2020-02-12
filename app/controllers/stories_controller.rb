@@ -2,6 +2,7 @@ class StoriesController < ApplicationController
 
   get '/stories' do
     @stories = Story.all
+    @published_stories = Story.published_stories
     erb :'stories/index'
   end
 
