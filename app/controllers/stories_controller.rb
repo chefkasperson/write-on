@@ -55,6 +55,38 @@ class StoriesController < ApplicationController
       redirect to '/login'
     end
   end
-      
+
+  patch '/stories/:id' do
+    if logged_in?
+      if params[:content] == ""
+        redirect to "/stories/#{params[:id]}/edit"
+      else
+        @story = Story.find_by(id: params[:id])
+        if @story && @story.user == current_user
+          if @story.update(content: params[:content])
+            redirect to "/stories/#{@story.id}"
+          else
+            redirect to "/stories/#{@story.id}/edit"
+          end
+        else
+          redirect to '/stories'
+        end
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
+  delete '/stories/:id/delete' do
+    if logged_in?
+      @story = Story.find_by(id: params[:id])
+      if @story && @story.user == current_user
+        @story.delete
+      end
+      redirect to '/stories'
+    else
+      redirect to '/login'
+    end
+  end 
 
 end
