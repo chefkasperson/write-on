@@ -1,12 +1,29 @@
 <h3>Hello <%= @user.username %></h3>
 
-<h5>Current Stories</h5>
-
-<h5>Finished Stories</h5>
-
-<h5>Current Jams</h5>
+<h5>Current Stories</h5><br>
+  <% if @user.unpublished_stories.empty? %>
+    <h5>None</h5><br>
+  <% else %>
+  <ul>
+    <% @user.unpublished_stories.each do |story| %>
+      <h5><a href="/stories/<%= story.id %>"><%= story.title %></a></h5><br>
+    <% end %>
+  </ul>
+  <% end %>
+<h5>Finished Stories</h5><br>
+  <% if @user.published_stories.empty? %>
+    <h5>None</h5><br>
+  <% else %>
+  <ul>
+    <% @user.published_stories.each do |story| %>
+      <h5><a href="/stories/<%= story.id %>"><%= story.title %></a></h5><br>
+    <% end %>
+  </ul>
+  <% end %>
 
 <h5>Upcoming Jams</h5>
+
+<h5>Current Jams</h5>
 
 <h5>Completed Jams</h5>
 

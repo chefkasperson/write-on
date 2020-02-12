@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   get '/users/:slug/edit' do
     @user = User.find_by_slug(params[:slug])
-    if @user == current_user
+    if @user == current_user || @user.permission == 'admin'
       erb :'users/edit'
     else
       redirect to '/'
