@@ -15,6 +15,16 @@
   </head>
   <body>
     <div class="wrapper">
+    <% if !logged_in? %>
+      <a href="/login">Log In</a>
+    <% else %>
+      <a href="/logout">Log Out</a>
+    <% if current_user.permission == 'admin' %>
+      <a href="/jams/new">Create Jam</a>
+    <% end %>
+    <% end %>
+    <a href="/stories">Browse Stories</a>
+    <a href="/jams">Browse Jams</a>
 
         <%= yield %>
 
