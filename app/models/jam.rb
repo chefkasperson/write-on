@@ -2,15 +2,15 @@ class Jam < ActiveRecord::Base
   has_many :stories
   has_many :users, through: :stories
 
-  def open_jams
-    Jam.all.select{|jam| jam.status == 'open'}
+  def self.open_jams
+    Jam.all.select{|jam| jam.status == 'upcoming'}
   end
 
-  def voting_jams
+  def self.voting_jams
     Jam.all.select{|jam| jam.status == 'voting'}
   end
 
-  def closed_jams
+  def self.closed_jams
     Jam.all.select{|jam| jam.status == 'closed'}
   end
 end

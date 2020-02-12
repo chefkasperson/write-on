@@ -1,0 +1,8 @@
+
+<h4>Upcoming Jams</h4>
+<ul>
+<% @open_jams.each do |jam| %>
+  <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5>
+<% end %>
+
+</ul>

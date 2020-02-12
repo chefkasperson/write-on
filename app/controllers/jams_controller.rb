@@ -2,6 +2,7 @@ class JamsController < ApplicationController
 
   get '/jams' do
     @jams = Jam.all
+    @open_jams = Jam.open_jams
     erb :'/jams/index'
   end
 
@@ -15,7 +16,7 @@ class JamsController < ApplicationController
 
   post '/jams' do
     if logged_in? && current_user.permission == 'admin'
-      if params[:title] == "" || params[:start_date] == "" || params[:end_date] == ""
+      if params[:name] == "" || params[:start_date] == "" || params[:end_date] == ""
         redirect to '/jams/new'
       else
         @jam = Jam.new(params[:jam])
@@ -50,14 +51,14 @@ class JamsController < ApplicationController
 
   patch '/jams/:id' do
     if logged_in? && current_user.permission == 'admin'
-      if params[:title] == "" || params[:status] == "" || params[:start_date] == "" || params[:end_date] == "" || params[:theme] == ""
+      if params[:name] == "" || params[:status] == "" || params[:start_date] == "" || params[:end_date] == "" || params[:theme] == ""
         redirect to "/jams/#{params[:id]}/edit"
       else
         @jam = Jam.find_by(id: params[:id])
         if @jam
           if @jam.update(
             theme: params[:theme],
-            title: params[:title],
+            name: params[:name],
             start_date: params[:start_date],
             end_date: params[:end_date],
             status: params[:status]
