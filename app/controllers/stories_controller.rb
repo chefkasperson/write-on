@@ -1,12 +1,8 @@
 class StoriesController < ApplicationController
 
   get '/stories' do
-    if logged_in?
-      @stories = Story.all
-      erb :'stories/index'
-    else
-      redirect to '/login'
-    end
+    @stories = Story.all
+    erb :'stories/index'
   end
 
   get '/stories/new' do
@@ -35,18 +31,14 @@ class StoriesController < ApplicationController
   end
 
   get '/stories/:id' do
-    if logged_in?
-      @story = Story.find_by(id: params[:id])
-      erb :'/stories/show'
-    else
-      redirect to 'log in'
-    end
+    @story = Story.find_by(id: params[:id])
+    erb :'/stories/show'
   end
 
   get '/stories/:id/edit' do
     if logged_in?
       @story = Story.find_by(id: params[:id])
-      if @story && @story.user == current_user
+      if @story && (@story.user == current_user || current_user.permission == 'admin')
         erb :'/stories/edit'
       else
         redirect to '/stories'
@@ -62,7 +54,7 @@ class StoriesController < ApplicationController
         redirect to "/stories/#{params[:id]}/edit"
       else
         @story = Story.find_by(id: params[:id])
-        if @story && @story.user == current_user
+        if @story && (@story.user == current_user || current_user.permission == 'admin')
           if @story.update(content: params[:content])
             redirect to "/stories/#{@story.id}"
           else
@@ -80,7 +72,7 @@ class StoriesController < ApplicationController
   delete '/stories/:id/delete' do
     if logged_in?
       @story = Story.find_by(id: params[:id])
-      if @story && @story.user == current_user
+      if @story && (@story.user == current_user || current_user.permission == 'admin')
         @story.delete
       end
       redirect to '/stories'
