@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     end
   end
 
-  patch '/users/:slug' do
+  post '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     binding.pry
     if @user.update(params[:user])
