@@ -3,7 +3,7 @@ class StoriesController < ApplicationController
   get '/stories' do
     if logged_in?
       @stories = Story.all
-      erb :'stories/stories'
+      erb :'stories/index'
     else
       redirect to '/login'
     end
@@ -11,7 +11,7 @@ class StoriesController < ApplicationController
 
   get '/stories/new' do
     if logged_in?
-      erb :'stories/create_story'
+      erb :'stories/new'
     else
       redirect to '/login'
     end
