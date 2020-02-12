@@ -2,8 +2,19 @@
 
 <h5>Theme: <%= @jam.theme %></h5><br>
 
+<h5>Number of Participants: <%= @jam.stories.count %></h5><br>
 <% if @jam.status == "upcoming"%>
-  <h5>Start Date: <%= @jam.start_date %></h5>
-  <h5>End Date: <%= @jam.end_date %></h5>
-  <h5>Number of Participants: <%= @jam.stories.count %></h5>
+  <h5>Start Date: <%= @jam.start_date.strftime("%b %d, %Y") %></h5>
+  <h5>End Date: <%= @jam.end_date.strftime("%b %d, %Y") %></h5>
+<% else %>  
+  <h5>Jam Stories</h5>
+  <% if @jam.published_stories.empty? %>
+    <h5>There are no stories here my friend</h5>
+  <% else %>  
+    <ul>
+    <% @jam.published_stories.each do |story| %>
+     <h5><a href="/stories/<%= story.id %>"><%= story.title %></a></h5>
+    <% end %>
+    </ul>
+  <% end %>
 <% end %>
