@@ -50,7 +50,7 @@ class JamsController < ApplicationController
 
   patch '/jams/:id' do
     if logged_in? && current_user.permission == 'admin'
-      if params[:title] == "" || params[:start_date] == "" || params[:end_date] == "" || params[:theme] == ""
+      if params[:title] == "" || params[:status] == "" || params[:start_date] == "" || params[:end_date] == "" || params[:theme] == ""
         redirect to "/jams/#{params[:id]}/edit"
       else
         @jam = Jam.find_by(id: params[:id])
@@ -59,7 +59,8 @@ class JamsController < ApplicationController
             theme: params[:theme],
             title: params[:title],
             start_date: params[:start_date],
-            end_date: params[:end_date]
+            end_date: params[:end_date],
+            status: params[:status]
            )
            redirect to "/jams/#{@jam.id}"
           else
