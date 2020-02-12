@@ -3,6 +3,8 @@ class JamsController < ApplicationController
   get '/jams' do
     @jams = Jam.all
     @open_jams = Jam.open_jams
+    @voting_jams = Jam.voting_jams
+    @closed_jams = Jam.closed_jams
     erb :'/jams/index'
   end
 

@@ -1,8 +1,33 @@
 
-<h4>Upcoming Jams</h4>
+<h4>Upcoming Jams</h4><br>
 <ul>
-<% @open_jams.each do |jam| %>
-  <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5>
+<% if @open_jams.empty?%>
+  <h5>None</h5>
+<% else %>
+  <% @open_jams.each do |jam| %>
+    <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5>
+  <% end %>
 <% end %>
+</ul><br><br>
 
-</ul>
+<h4>Jams in Judgement</h4><br>
+<ul>
+<% if @voting_jams.empty?%>
+  <h5>None</h5>
+<% else %>
+  <% @voting_jams.each do |jam| %>
+    <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5>
+  <% end %>
+<% end %>
+</ul><br><br>
+
+<h4>Closed Jams</h4><br>
+<ul>
+<% if @closed_jams.empty?%>
+  <h5>None</h5>
+<% else %>
+  <% @closed_jams.each do |jam| %>
+    <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5>
+  <% end %>
+<% end %>
+</ul><br><br>
