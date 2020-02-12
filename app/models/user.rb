@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   validates :username, length: {
-    minimum: 6,
+    minimum: 3,
     maximum: 35
   }, uniqueness: true
   
