@@ -1,1 +1,9 @@
-All the Jams
+<h3><%= @jam.name %></h3><br>
+
+<h5>Theme: <%= @jam.theme %></h5><br>
+
+<% if @jam.status == "upcoming"%>
+  <h5>Start Date: <%= @jam.start_date %></h5>
+  <h5>End Date: <%= @jam.end_date %></h5>
+  <h5>Number of Participants: <%= @jam.stories.count %></h5>
+<% end %>

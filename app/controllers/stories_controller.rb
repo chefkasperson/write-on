@@ -39,7 +39,7 @@ class StoriesController < ApplicationController
   get '/stories/:id/edit' do
     if logged_in?
       @story = Story.find_by(id: params[:id])
-      if @story && (@story.user == current_user || current_user.permission == 'admin')
+      if @story && @story.published? == false && (@story.user == current_user || current_user.permission == 'admin')
         erb :'/stories/edit'
       else
         redirect to '/stories'

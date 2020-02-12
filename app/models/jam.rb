@@ -13,4 +13,9 @@ class Jam < ActiveRecord::Base
   def self.closed_jams
     Jam.all.select{|jam| jam.status == 'closed'}
   end
+
+  def published_stories
+    self.stories.select{|story| story.published? == true}
+  end
+    
 end
