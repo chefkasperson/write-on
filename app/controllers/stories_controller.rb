@@ -74,7 +74,7 @@ class StoriesController < ApplicationController
     end
   end
 
-  delete '/stories/:id/delete' do
+  delete '/stories/:id' do
     if logged_in?
       @story = Story.find_by(id: params[:id])
       if @story && (@story.user == current_user || current_user.permission == 'admin')

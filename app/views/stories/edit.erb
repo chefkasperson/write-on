@@ -14,4 +14,8 @@
   <input type="checkbox" name="story[published?]" value="true" id="publish">
   <label for="publish">Publish Story</label><br>
   <input type="submit" value="Save Changes">
+</form><br>
+<form action="/stories/<%= @story.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Story">
 </form>
