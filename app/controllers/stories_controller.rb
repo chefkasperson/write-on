@@ -15,13 +15,13 @@ class StoriesController < ApplicationController
       redirect to '/login'
     end
   end
-
+  
   post '/stories' do
     if logged_in?
       if params[:content] == ""
         redirect to "/stories/new"
       else
-        @story = current_user.build(content: params[:content])
+        @story = current_user.stories.build(params[:story])
         if @story.save
           redirect to "/stories/#{@story.id}"
         else
@@ -32,16 +32,17 @@ class StoriesController < ApplicationController
       redirect to '/login'
     end
   end
-
+  
   get '/stories/:id' do
     @story = Story.find_by(id: params[:id])
     erb :'/stories/show'
   end
-
+  
   get '/stories/:id/edit' do
+    @open_jams = Jam.open_jams
     if logged_in?
       @story = Story.find_by(id: params[:id])
-      if @story && @story.published? == false && (@story.user == current_user || current_user.permission == 'admin')
+      if @story && (@story.user == current_user || current_user.permission == 'admin')
         erb :'/stories/edit'
       else
         redirect to '/stories'
@@ -57,8 +58,9 @@ class StoriesController < ApplicationController
         redirect to "/stories/#{params[:id]}/edit"
       else
         @story = Story.find_by(id: params[:id])
+        binding.pry
         if @story && (@story.user == current_user || current_user.permission == 'admin')
-          if @story.update(content: params[:content])
+          if @story.update(params[:story])
             redirect to "/stories/#{@story.id}"
           else
             redirect to "/stories/#{@story.id}/edit"
