@@ -11,8 +11,8 @@
 <% @closed_jams.each do |jam| %>
   <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5>
   <% jam.stories.each do |story| %>
-    <h6><a href="/stories/<%= story.id %>"><%= story.title %></a></h6>
-    <h6><a href="/users/<%= story.user.id %>"><%= story.user.username %></a></h6>
+    <h6><a href="/stories/<%= story.id %>"><%= story.title %></a> 
+    By: <a href="/users/<%= story.user.slug %>"><%= story.user.username %></a></h6>
   <% end %>
   <br>
 <% end %>
