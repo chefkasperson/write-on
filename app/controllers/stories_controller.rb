@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
 
   get '/stories' do
+    @closed_jams = Jam.closed_jams
     @stories = Story.all
     @published_stories = Story.published_stories
     erb :'stories/index'
