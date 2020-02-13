@@ -1,16 +1,56 @@
-<h3>Hello <%= @user.username %></h3>
+<h3><%= @user.username %></h3><br>
 
-<h5>Current Stories</h5><br>
-  <% if @user.unpublished_stories.empty? %>
-    <h6>None</h6><br>
-  <% else %>
-  <ul>
-    <% @user.unpublished_stories.each do |story| %>
-      <h5><a href="/stories/<%= story.id %>"><%= story.title %></a></h5><br>
+<% if @user == current_user %>
+
+  <h5>Current Stories</h5><br>
+    <% if @user.unpublished_stories.empty? %>
+      <h6>None</h6><br>
+    <% else %>
+    <ul>
+      <% @user.unpublished_stories.each do |story| %>
+        <h5><a href="/stories/<%= story.id %>"><%= story.title %></a></h5><br>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
-  <% end %>
-<h5>Finished Stories</h5><br>
+  <h5>Finished Stories</h5><br>
+    <% if @user.published_stories.empty? %>
+      <h6>None</h6><br>
+    <% else %>
+    <ul>
+      <% @user.published_stories.each do |story| %>
+        <h5><a href="/stories/<%= story.id %>"><%= story.title %></a></h5><br>
+      <% end %>
+    </ul>
+    <% end %>
+
+  <h5>Open Jams</h5>
+    <% if @user.open_jams.empty? %>
+      <h6>None</h6><br>
+    <% else %>
+    <ul>
+      <% @user.open_jams.each do |jam| %>
+        <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5><br>
+      <% end %>
+    </ul>
+    <% end %>
+
+
+  <h5>Completed Jams</h5>
+    <% if @user.closed_jams.empty? %>
+      <h6>None</h6><br>
+    <% else %>
+    <ul>
+      <% @user.closed_jams.each do |jam| %>
+        <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5><br>
+      <% end %>
+    </ul>
+    <% end %>
+
+  <h5><a href="/users/<%= @user.slug %>/edit">Edit Profile</a></h5>
+
+<% else %>
+
+  <h5>Finished Stories</h5><br>
   <% if @user.published_stories.empty? %>
     <h6>None</h6><br>
   <% else %>
@@ -21,32 +61,6 @@
   </ul>
   <% end %>
 
-<h5>Open Jams</h5>
-  <% if @user.open_jams.empty? %>
-    <h6>None</h6><br>
-  <% else %>
-  <ul>
-    <% @user.open_jams.each do |jam| %>
-      <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5><br>
-    <% end %>
-  </ul>
-  <% end %>
-
-
-<h5>Completed Jams</h5>
-  <% if @user.closed_jams.empty? %>
-    <h6>None</h6><br>
-  <% else %>
-  <ul>
-    <% @user.closed_jams.each do |jam| %>
-      <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5><br>
-    <% end %>
-  </ul>
-  <% end %>
-
-<h5><a href="/users/<%= @user.slug %>/edit">Edit Profile</a></h5>
-
-
-
+<% end %>
 
 
