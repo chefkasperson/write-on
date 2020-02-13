@@ -4,17 +4,21 @@
   <input type="hidden" name="_method" value="patch">
   <label for="title">Title: </label>
   <input type="text" name="story[title]" id="title" value="<%= @story.title %>"><br><br>
-  <label for="jam_selector">Choose Jam: </label>
-    <% @open_jams.each do |jam| %>
-     <h5><input type="radio" name="story[jam_id]" value="<%= jam.id %>"\><%= jam.name %></h5>
-    <% end %>
+  <h5>For Jam: <%= @story.jam.name %></h5>
+  <!--
+   <label for="jam_selector">Choose Jam: </label>
+     <% @open_jams.each do |jam| %>
+      <h5><input type="radio" name="story[jam_id]" value="<%= jam.id %>"\><%= jam.name %></h5>
+     <% end %>
+    /-->
     <br>
   <label for="content">Edit Writing: </label><br>
   <textarea name="story[content]" id="content" rows="25" cols="70"><%= @story.content %></textarea><br>
   <input type="checkbox" name="story[published?]" value="true" id="publish">
-  <label for="publish">Publish Story</label><br>
+  <label for="publish">Publish Story</label><br><br>
   <input type="submit" value="Save Changes">
-</form><br><br><br>
+  <a href="/stories/<%= @story.id %>">Return to Story Page</a><br><br>
+</form>
 <form action="/stories/<%= @story.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Story">
