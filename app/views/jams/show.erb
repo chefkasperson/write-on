@@ -1,7 +1,7 @@
 <h3><%= @jam.name %></h3><br>
 
 <% if Time.now < @jam.start_date %>
-  <h5>Theme will be released on <%= @jam.start_date.strftime("%b %d") %></h5><br>
+  <h5>Theme will be released on <%= @jam.start_date.strftime("%B %d") %></h5><br>
 <% else %>  
   < h5>Theme: <%= @jam.theme %></h5><br>
 <% end %>
