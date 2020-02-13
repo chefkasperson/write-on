@@ -63,87 +63,87 @@ User.create(
   Story.create(
     title: "Magna",
     content: "Lorem ipsum dolor sit amet",
-    published: true,
-    user_id: "2",
-    jam_id: "1"
+    published?: true,
+    user_id: 2,
+    jam_id: 1
   )
   Story.create(
     title: "Cillume",
     content: "Lorem ipsum dolor sit amet",
-    published: true,
-    user_id: "2",
-    jam_id: "2"
+    published?: true,
+    user_id: 2,
+    jam_id: 2
   )
   Story.create(
     title: "Aloqui",
     content: "Lorem ipsum dolor sit amet",
-    published: false,
-    user_id: "2",
-    jam_id: "3"
+    published?: false,
+    user_id: 2,
+    jam_id: 3
   )
   
   Story.create(
     title: "Laborris",
     content: "Lorem ipsum dolor sit amet",
-    published: true,
-    user_id: "3",
-    jam_id: "2"
+    published?: true,
+    user_id: 3,
+    jam_id: 2
   )
   Story.create(
     title: "Ullemco",
     content: "Lorem ipsum dolor sit amet",
-    published: true,
-    user_id: "3",
-    jam_id: "4"
+    published?: true,
+    user_id: 3,
+    jam_id: 4
   )
   Story.create(
     title: "Nisi",
     content: "Lorem ipsum dolor sit amet",
-    published: false,
-    user_id: "3",
-    jam_id: "4"
+    published?: false,
+    user_id: 3,
+    jam_id: 4
   )
 
   Story.create(
     title: "Veniam",
     content: "Lorem ipsum dolor sit amet",
-    published: true,
-    user_id: "4",
-    jam_id: "1"
+    published?: true,
+    user_id: 4,
+    jam_id: 1
   )
   Story.create(
     title: "Nostrud",
     content: "Lorem ipsum dolor sit amet",
-    published: true,
-    user_id: "4",
-    jam_id: "2"
+    published?: true,
+    user_id: 4,
+    jam_id: 2
   )
   Story.create(
     title: "Sit",
     content: "Lorem ipsum dolor sit amet",
-    published: false,
-    user_id: "4",
-    jam_id: "3c"
+    published?: false,
+    user_id: 4,
+    jam_id: 3
   )
   Story.create(
     title: "Amet",
     content: "Lorem ipsum dolor sit amet",
-    published: false,
-    user_id: "4",
-    jam_id: "4"
+    published?: false,
+    user_id: 4,
+    jam_id: 4
   )
 
   Story.create(
     title: "Dolor",
     content: "Lorem ipsum dolor sit amet",
-    published: true,
-    user_id: "5",
-    jam_id: "2"
+    published?: true,
+    user_id: 5,
+    jam_id: 2
   )
   Story.create(
     title: "Ipsum",
     content: "Lorem ipsum dolor sit amet",
-    published: false,
-    user_id: "5",
-    jam_id: "3"
+    published?: false,
+    user_id: 5,
+    jam_id: 3
   )
