@@ -15,21 +15,28 @@
   </head>
   <body>
     <div class="wrapper">
-    <% if !logged_in? %>
-      <a href="/login">Log In</a>
-    <% else %>
+    <% if logged_in? %>
       <a href="/logout">Log Out</a>
       <a href="/users/<%= current_user.slug %>">Home</a>
+      <a href="/stories/new">Create Story</a>
     <% if current_user.permission == 'admin' %>
       <a href="/jams/new">Create Jam</a>
     <% end %>
+    <% else %>
+      <a href="/login">Log In</a>
     <% end %>
     <a href="/stories">Browse Stories</a>
     <a href="/jams">Browse Jams</a><br><br>
 
+
         <%= yield %>
 
       <footer class="branding">
+        <% if logged_in? %>
+          <small> Logged in as:
+          <%= current_user.username %>
+          </small><br>
+        <% end %>
         <small>&copy; 2020 <strong>WriteOn</strong></small>
       </footer>
     </div>
