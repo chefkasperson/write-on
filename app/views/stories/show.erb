@@ -1,24 +1,10 @@
-<% if logged_in? %>
-  <h5>Your Stories:</h5>
-  <% current_user.stories.each do |story| %>
-    <h6><a href="/stories/<%= story.id %>"><%= story.title %></a></h6>
-  <% end %>
+<h3><%= @story.title %></h3>
+<h5>By: <%=@story.user.username %></h5><br>
+
+<p><%= @story.content %></p>
+
+<% if logged_in? && (current_user.id == @story.user_id || current_user.permission == 'admin') %>
+  <a href="/stories/<%= params[:id] %>/edit">Edit Story</a>
 <% end %>
-
-
-<h5>Published Stories:</h5>
-
-<% if @closed_jams == nil %>
-  <h6>None</h6>
-<% else %>
-  <% @closed_jams.each do |jam| %>
-    <h5><a href="/jams/<%= jam.id %>"><%= jam.name %></a></h5>
-    <% jam.stories.each do |story| %>
-      <h6><a href="/stories/<%= story.id %>"><%= story.title %></a></h6>
-      <h6><a href="/users/<%= story.user.id %>"><%= story.user.username %></a></h6>
-    <% end %>
-  <% end %>
-<% end %>
-
 
 

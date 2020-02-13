@@ -9,6 +9,7 @@ class StoriesController < ApplicationController
 
   get '/stories/new' do
     if logged_in?
+      @open_jams = Jam.open_jams
       erb :'stories/new'
     else
       redirect to '/login'

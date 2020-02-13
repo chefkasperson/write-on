@@ -1,11 +1,13 @@
 <h3>Create a New Story</h3>
 
-<form action="/newstory" method="post">
+<form action="/stories" method="post">
   <label for="title">Title: </label>
   <input type="text" name="story[title]" id="title">
   <label for="jam_selector">Choose Jam: </label>
-  <h5>bla bla bla</h5>
+    <% @open_jams.each do |jam| %>
+     <h5><input type="radio" name="story[jam_id]" value="<%= jam.id %>"\><%= jam.name %></h5>
+    <% end %>
   <label for="content">Begin Writing: </label>
-  <textarea rows="50" cols="70" name="story[content]" id="content"></textarea>
+  <textarea rows="50" cols="70" name="story[content]" id="content" placeholder="blah blah blah"></textarea>
   <input type="submit" value="Submit">
 </form>

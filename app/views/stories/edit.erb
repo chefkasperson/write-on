@@ -1,12 +1,15 @@
 <h3>Edit Your Story</h3>
 
-<form action="/stories/<%= @story.slug %>" method="post">
+<form action="/stories/<%= @story.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
   <label for="title">Title: </label>
   <input type="text" name="story[title]" id="title" value="<%= @story.title %>"><br>
   <label for="jam_selector">Choose Jam: </label>
+    <%%>
   <h5>bla bla bla</h5>
-  <label for="content">Begin Writing: </label>
-  <textarea name="story[content]" id="content" rows="50" cols="70" value="<%= @story.content %>">
-  </textarea><br>
-  <input type="submit" value="Submit">
+  <label for="content">Edit Writing: </label><br>
+  <textarea name="story[content]" id="content" rows="50" cols="70"><%= @story.content %></textarea><br>
+  <input type="checkbox" name="story[:published?]" value="true" id="publish">
+  <label for="publish">Publish Story</label><br>
+  <input type="submit" value="Save Changes">
 </form>
