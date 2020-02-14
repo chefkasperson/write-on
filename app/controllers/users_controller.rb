@@ -11,7 +11,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/stories'
     else
-      @errors = author.errors.full_messages
       erb :'users/new'
     end
   end
