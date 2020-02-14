@@ -1,6 +1,7 @@
 Write On - A website application that hosts mini writing contests for people to enter, judge, and enjoy. 
 
-Write On is an open source project that can be downloaded at https://github.com/chefkasperson/write-on
+Write On is an open source project that can be downloaded at:
+  https://github.com/chefkasperson/write-on
 
 To install on machine:
   download the files from the link above,
@@ -13,3 +14,6 @@ Technologies used:
   Rake
   Bcrypt
   Sqlite3
+
+License can be viewed at: 
+  https://github.com/chefkasperson/write-on/blob/master/LICENSE
