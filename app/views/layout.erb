@@ -19,9 +19,9 @@
       <a href="/logout">Log Out</a>
       <a href="/users/<%= current_user.slug %>">Home</a>
       <a href="/stories/new">Create Story</a>
-    <% if current_user.permission == 'admin' %>
-      <a href="/jams/new">Create Jam</a>
-    <% end %>
+      <% if current_user.permission == 'admin' %>
+        <a href="/jams/new">Create Jam</a>
+      <% end %>
     <% else %>
       <a href="/login">Log In</a>
     <% end %>

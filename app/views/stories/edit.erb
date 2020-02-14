@@ -14,8 +14,12 @@
     <br>
   <label for="content">Edit Writing: </label><br>
   <textarea name="story[content]" id="content" rows="25" cols="70"><%= @story.content %></textarea><br>
-  <input type="checkbox" name="story[published?]" value="true" id="publish">
-  <label for="publish">Publish Story</label><br><br>
+  <% if !@story.published? %>
+    <input type="checkbox" name="story[published?]" value="true" id="publish">
+    <label for="publish">Publish Story</label><br><br>
+  <% else %>
+    <h6>This story has been published</h6><br>
+  <% end %>
   <input type="submit" value="Save Changes">
   <a href="/stories/<%= @story.id %>">Return to Story Page</a><br><br>
 </form>

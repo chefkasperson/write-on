@@ -3,7 +3,7 @@
 <% if Time.now < @jam.start_date %>
   <h5>Theme will be released on <%= @jam.start_date.strftime("%B %d") %></h5><br>
 <% else %>  
-  < h5>Theme: <%= @jam.theme %></h5><br>
+  <h5>Theme: <%= @jam.theme %></h5><br>
 <% end %>
 
 <h5>Number of Participants: <%= @jam.stories.count %></h5><br>
@@ -26,6 +26,6 @@
 <% end %>
 <br>
 
-<% if current_user.permission == 'admin' %>
+<% if logged_in? && current_user.permission == 'admin' %>
   <h6><a href="/jams/<%= @jam.id %>/edit">Edit Jam</a></h6>
 <% end %>

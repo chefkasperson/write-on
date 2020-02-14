@@ -3,8 +3,11 @@
 
 <p><%= @story.content %></p>
 
-<% if logged_in? && @story.published? == false && (current_user.id == @story.user_id || current_user.permission == 'admin') %>
+<% if logged_in? && @story.published? == false && current_user.id == @story.user_id %>
   <a href="/stories/<%= @story.id %>/edit">Edit Story</a>
+<% elsif current_user.permission = "admin" %>
+  <a href="/stories/<%= @story.id %>/edit">Edit Story</a>
+  <h6>This story has been published</h6>
 <% else %>
   <h6>This story has been published</h6>
 <% end %>
