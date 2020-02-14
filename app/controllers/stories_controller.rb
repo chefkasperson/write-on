@@ -58,7 +58,6 @@ class StoriesController < ApplicationController
         redirect to "/stories/#{params[:id]}/edit"
       else
         @story = Story.find_by(id: params[:id])
-        binding.pry
         if @story && (@story.user == current_user || current_user.permission == 'admin')
           if @story.update(params[:story])
             redirect to "/stories/#{@story.id}"
