@@ -42,8 +42,9 @@ class UsersController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     if @user
       @user.destroy
+      redirect to '/'
     else
-      redirect to '/users'
+      redirect to '/'
     end
   end
 
