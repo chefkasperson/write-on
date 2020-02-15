@@ -31,7 +31,9 @@ class UsersController < ApplicationController
 
   patch '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    if @user.update(params[:user])
+    if @user
+      @user.update(params[:user])
+      current_user
       redirect to "/users/#{@user.slug}"
     else
       erb :'/users/edit'
