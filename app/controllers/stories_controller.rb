@@ -8,12 +8,9 @@ class StoriesController < ApplicationController
   end
 
   get '/stories/new' do
-    if logged_in?
-      @open_jams = Jam.open_jams
-      erb :'stories/new'
-    else
-      redirect to '/login'
-    end
+    redirect_if_not_logged_in
+    @open_jams = Jam.open_jams
+    erb :'stories/new'
   end
   
   post '/stories' do
@@ -40,49 +37,38 @@ class StoriesController < ApplicationController
   
   get '/stories/:id/edit' do
     @open_jams = Jam.open_jams
-    if logged_in?
-      @story = Story.find_by(id: params[:id])
-      if @story && (@story.user == current_user || current_user.permission == 'admin')
-        erb :'/stories/edit'
-      else
-        redirect to '/stories'
-      end
-    else
-      redirect to '/login'
-    end
+    redirect_if_not_logged_in
+    @story = Story.find_by(id: params[:id])
+    authorized_to_enter
+    erb :'stories/edit'
+  #   if @story && (@story.user == current_user || current_user.permission == 'admin')
+  #     erb :'/stories/edit'
+  #   else
+  #     redirect to '/stories'
+  #   end
   end
 
   patch '/stories/:id' do
-    if logged_in?
-      if params[:content] == ""
-        redirect to "/stories/#{params[:id]}/edit"
-      else
-        @story = Story.find_by(id: params[:id])
-        if @story && (@story.user == current_user || current_user.permission == 'admin')
-          if @story.update(params[:story])
-            redirect to "/stories/#{@story.id}"
-          else
-            redirect to "/stories/#{@story.id}/edit"
-          end
-        else
-          redirect to '/stories'
-        end
-      end
+    redirect_if_not_logged_in
+    if params[:content] == ""
+      redirect to "/stories/#{params[:id]}/edit"
     else
-      redirect to '/login'
+      @story = Story.find_by(id: params[:id])
+      authorized_to_enter
+      if @story.update(params[:story])
+        redirect to "/stories/#{@story.id}"
+      else
+        redirect to "/stories/#{@story.id}/edit"
+      end
     end
   end
 
   delete '/stories/:id' do
-    if logged_in?
-      @story = Story.find_by(id: params[:id])
-      if @story && (@story.user == current_user || current_user.permission == 'admin')
-        @story.delete
-      end
-      redirect to '/stories'
-    else
-      redirect to '/login'
-    end
+    redirect_if_not_logged_in
+    @story = Story.find_by(id: params[:id])
+    authorized_to_enter  
+    @story.delete
+    redirect to '/stories'
   end 
 
 end
